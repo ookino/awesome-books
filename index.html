@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    ul {
+      padding: 0;
+      list-style-type: none;
+    }
+  </style>
+  <body>
+    <main>
+      <h1>Awesome Books</h1>
+      <ul class="books-ul"></ul>
+
+      <div>
+        <form class="add-form">
+          <input
+            id="title"
+            name="title"
+            type="text"
+            placeholder="Title"
+            required
+          />
+          <br />
+          <br />
+          <input
+            id="author"
+            name="author"
+            type="text"
+            placeholder="Author"
+            required
+          />
+          <br />
+          <br />
+          <button id="add-btn" type="submit">Add Book</button>
+        </form>
+      </div>
+    </main>
+    <script src="index.js"></script>
+  </body>
+</html>
