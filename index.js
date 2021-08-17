@@ -1,9 +1,7 @@
-const books =
-  localStorage.getItem('books') !== null
-    ? JSON.parse(localStorage.getItem('books'))
-    : [];
+const books = localStorage.getItem('books') !== null
+  ? JSON.parse(localStorage.getItem('books'))
+  : [];
 
-const form = document.getElementById('add-form');
 const title = document.getElementById('title');
 const author = document.getElementById('author');
 const addBtn = document.getElementById('add-btn');
@@ -24,16 +22,12 @@ addBtn.addEventListener('click', () => {
   localStorage.setItem('books', JSON.stringify(books));
 });
 
-
+// eslint-disable-next-line no-unused-vars
 const removeBook = (bookTitle) => {
-  const filtered = books.filter(function (book) {
-    return book.title != bookTitle;
-  });
-  console.log(filtered);
+  const filtered = books.filter((book) => book.title !== bookTitle);
   localStorage.setItem('books', JSON.stringify(filtered));
-  location.reload();
+  window.location.reload();
 };
-
 
 books.forEach((element) => {
   const li = document.createElement('li');
