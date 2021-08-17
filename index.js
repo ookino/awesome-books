@@ -24,6 +24,17 @@ addBtn.addEventListener('click', () => {
   localStorage.setItem('books', JSON.stringify(books));
 });
 
+
+const removeBook = (bookTitle) => {
+  const filtered = books.filter(function (book) {
+    return book.title != bookTitle;
+  });
+  console.log(filtered);
+  localStorage.setItem('books', JSON.stringify(filtered));
+  location.reload();
+};
+
+
 books.forEach((element) => {
   const li = document.createElement('li');
   const pTitle = document.createElement('p');
