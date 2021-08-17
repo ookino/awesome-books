@@ -1,8 +1,8 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Portfolio
+# Awesome Books
 
-> My Personal Portfolio
+> "Awesome books" is a simple website that displays a list of books and allows you to add and remove books from that list
 
 **Additional description about the project and its features.**
 
