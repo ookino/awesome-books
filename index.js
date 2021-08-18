@@ -52,6 +52,14 @@ class Book {
   };
 }
 
+ const booksData = new Book();
+
+/** Remove Book **/
+const removeBook = (id) => {
+  booksData.removeBook(id);
+};
+
+/** Add Book **/
 title.addEventListener('input', (e) => {
   inputtedTitle = e.target.value;
 });
@@ -60,31 +68,10 @@ author.addEventListener('input', (e) => {
   inputtedAuthor = e.target.value;
 });
 
-addBtn.addEventListener('click', () => {
-  const newBook = { title: inputtedTitle, author: inputtedAuthor };
-  books.unshift(newBook);
-  localStorage.setItem('books', JSON.stringify(books));
+addBtn.addEventListener('click', (e) => {
+  const generatedId = Math.floor(Math.random() * 100);
+  booksData.addBook(inputtedTitle, inputtedAuthor, generatedId);
 });
 
-// eslint-disable-next-line no-unused-vars
-const removeBook = (bookTitle) => {
-  const filtered = books.filter((book) => book.title !== bookTitle);
-  localStorage.setItem('books', JSON.stringify(filtered));
-  window.location.reload();
-};
-
-books.forEach((element) => {
-  const li = document.createElement('li');
-  const pTitle = document.createElement('p');
-  const pAuthor = document.createElement('p');
-  const addBook = document.createElement('button');
-  li.setAttribute('class', 'book-li');
-  pTitle.setAttribute('class', 'book-title');
-  pAuthor.setAttribute('class', 'book-author');
-  addBook.setAttribute('onclick', `removeBook('${element.title}')`);
-  pTitle.innerHTML = `${element.title}`;
-  pAuthor.innerHTML = `${element.author}`;
-  addBook.innerHTML = 'Remove';
-  li.innerHTML += pTitle.outerHTML + pAuthor.outerHTML + addBook.outerHTML;
-  document.querySelector('.books-ul').appendChild(li);
-});
+/** display Book **/
+window.addEventListener('load', booksData.displayBooks());
