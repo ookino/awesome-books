@@ -13,20 +13,18 @@ class Book {
 
   addBook = (title, author, bookId) => {
     const newBook = new Book(title, author, bookId);
-    const ls =
-      localStorage.getItem('books') !== null
-        ? JSON.parse(localStorage.getItem('books'))
-        : [];
+    const ls = localStorage.getItem('books') !== null
+      ? JSON.parse(localStorage.getItem('books'))
+      : [];
     ls.unshift(newBook);
     localStorage.setItem('books', JSON.stringify(ls));
-    console.log(localStorage);
   };
 
   removeBook = (bookId) => {
     const ls = JSON.parse(localStorage.getItem('books'));
-    const removed = ls.filter((book) => book.bookId != bookId);
+    const removed = ls.filter((book) => book.bookId !== bookId);
     localStorage.setItem('books', JSON.stringify(removed));
-    console.log(localStorage);
+    window.location.reload();
   };
 
   displayBooks = () => {
@@ -40,26 +38,27 @@ class Book {
         li.setAttribute('class', 'book-li');
         pTitle.setAttribute('class', 'book-title');
         pAuthor.setAttribute('class', 'book-author');
-        removeBook.setAttribute('onclick', `removeBook('${element.bookId}')`);
+        removeBook.setAttribute('onclick', `removeBook(${element.bookId})`);
         pTitle.innerHTML = `${element.title}`;
         pAuthor.innerHTML = `${element.author}`;
         removeBook.innerHTML = 'Remove';
-        li.innerHTML +=
-          pTitle.outerHTML + pAuthor.outerHTML + removeBook.outerHTML;
+        li.innerHTML
+          += pTitle.outerHTML + pAuthor.outerHTML + removeBook.outerHTML;
         document.querySelector('.books-ul').appendChild(li);
       });
     }
   };
 }
 
- const booksData = new Book();
+const booksData = new Book();
 
-/** Remove Book **/
+/** Remove Book * */
+// eslint-disable-next-line no-unused-vars
 const removeBook = (id) => {
   booksData.removeBook(id);
 };
 
-/** Add Book **/
+/** Add Book * */
 title.addEventListener('input', (e) => {
   inputtedTitle = e.target.value;
 });
@@ -68,10 +67,10 @@ author.addEventListener('input', (e) => {
   inputtedAuthor = e.target.value;
 });
 
-addBtn.addEventListener('click', (e) => {
+addBtn.addEventListener('click', () => {
   const generatedId = Math.floor(Math.random() * 100);
   booksData.addBook(inputtedTitle, inputtedAuthor, generatedId);
 });
 
-/** display Book **/
+/** display Book * */
 window.addEventListener('load', booksData.displayBooks());
