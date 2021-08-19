@@ -3,7 +3,33 @@ const author = document.getElementById('author');
 const addBtn = document.getElementById('add-btn');
 let inputtedAuthor = '';
 let inputtedTitle = '';
+const list = document.querySelector('.list-books');
+const add = document.querySelector('.add-book');
+const contact = document.querySelector('.contact');
+const logo = document.getElementById('logo');
+const addLink = document.getElementById('add');
+const listLink = document.getElementById('list');
+const contactLink = document.getElementById('contact');
 
+const listPage = () => {
+  list.classList.remove('hidden');
+  add.classList.add('hidden');
+  contact.classList.add('hidden');
+};
+
+const addPage = (e) => {
+  e.preventDefault();
+  add.classList.remove('hidden');
+  list.classList.add('hidden');
+  contact.classList.add('hidden');
+};
+
+const contactPage = (e) => {
+  e.preventDefault();
+  contact.classList.remove('hidden');
+  add.classList.add('hidden');
+  list.classList.add('hidden');
+};
 class Book {
   constructor(title, author, bookId, emoji) {
     this.title = title;
@@ -14,21 +40,27 @@ class Book {
 
   addBook = (title, author, bookId, emoji) => {
     const newBook = new Book(title, author, bookId, emoji);
-    const ls = localStorage.getItem('books') !== null
-      ? JSON.parse(localStorage.getItem('books'))
-      : [];
+    const ls =
+      localStorage.getItem('books') !== null
+        ? JSON.parse(localStorage.getItem('books'))
+        : [];
     ls.unshift(newBook);
     localStorage.setItem('books', JSON.stringify(ls));
   };
 
   removeBook = (bookId) => {
+    console.log(bookId);
     const ls = JSON.parse(localStorage.getItem('books'));
+    console.log(ls);
     const removed = ls.filter((book) => book.bookId !== bookId);
+    console.log(removed);
     localStorage.setItem('books', JSON.stringify(removed));
+    console.log(localStorage);
     window.location.reload();
   };
 
   displayBooks = () => {
+    listPage();
     if (localStorage.getItem('books') !== null) {
       const lsBooks = JSON.parse(localStorage.getItem('books'));
       lsBooks.forEach((element) => {
@@ -41,10 +73,11 @@ class Book {
         div.setAttribute('class', 'book-div');
         pEmoji.setAttribute('class', 'book-emoji');
         pTitle.setAttribute('class', 'book-title');
-        removeBook.setAttribute('onclick', `removeBook('${element.bookId}')`);
+        removeBook.setAttribute('onclick', `removeBook(${element.bookId})`);
         pEmoji.innerHTML = `${element.emoji}`;
-        pTitle.innerHTML = `${element.title}`
-          + `<span class="book-author"> by ${element.author}</span>`;
+        pTitle.innerHTML =
+          `${element.title}` +
+          `<span class="book-author"> by ${element.author}</span>`;
 
         removeBook.innerHTML = 'REMOVE';
         div.innerHTML += pEmoji.outerHTML + pTitle.outerHTML;
@@ -86,9 +119,15 @@ author.addEventListener('input', (e) => {
 
 addBtn.addEventListener('click', () => {
   const newEmoji = changeEmoji();
-  const generatedId = Math.floor(Math.random() * 100);
+  const generatedId = Math.floor(Math.random() * 10000);
   booksData.addBook(inputtedTitle, inputtedAuthor, generatedId, newEmoji);
 });
 
 /** display Book * */
 window.addEventListener('load', booksData.displayBooks());
+
+/** SPA Listners * */
+addLink.addEventListener('click', addPage);
+listLink.addEventListener('click', listPage);
+contactLink.addEventListener('click', contactPage);
+logo.addEventListener('click', listPage);
