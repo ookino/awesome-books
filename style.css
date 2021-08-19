@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Montserrat:wght@400;500;600&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -23,62 +25,90 @@ h1 {
   font-weight: 700;
 }
 
-main {
-        display: flex;
-        padding: 25px;
-        flex-direction: column;
-      }
-      form {
-        width: 100%;
-      }
-      input {
-        border-radius: 5px;
-        border: 1px solid #313131;
-        width: 60%;
-        padding: 16px;
-        box-sizing: border-box;
-      }
-      #add-btn {
-        padding: 16px 32px;
-      }
-      .book-div {
-        display: flex;
-        align-items: center;
-      }
-      li {
-        background-color: white;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 18px;
-      }
-      .book-author {
-        font-size: 14px;
-        letter-spacing: 0.1px;
-        font-family: ‘Montserrat’, sans-serif !important;
-        text-transform: none;
-        font-weight: 500;
-      }
-      li:nth-child(2n + 2) {
-        background-color: #F5F5F5;
-        border: none;
-      }
-      li:first-child {
-        border-top-left-radius: inherit;
-        border-top-right-radius: inherit;
-      }
-      li:last-child {
-        border-bottom-left-radius: inherit;
-        border-bottom-right-radius: inherit;
-      }
-      .book-emoji {
-        font-size: 30px;
-        margin-right: 16px;
-      }
-      .book-title {
-        font-family: ‘Fraunces’, serif;
-        font-size: 30px;
-        font-weight: 500;
-        text-transform: capitalize;
-      }
+button {
+  border-radius: 5px;
+  color: #fff;
+  background-color: #313131;
+  border: 1px solid #313131;
+  padding: 10px 32px;
+}
 
+main {
+  display: flex;
+  padding: 25px;
+  flex-direction: column;
+}
+
+form {
+  width: 100%;
+}
+
+input {
+  border-radius: 5px;
+  border: 1px solid #313131;
+  width: 60%;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+#add-btn {
+  padding: 16px 32px;
+}
+
+.book-div {
+  display: flex;
+  align-items: center;
+}
+
+li {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px;
+}
+
+.book-author {
+  font-size: 14px;
+  letter-spacing: 0.1px;
+  font-family: ‘Montserrat’, sans-serif !important;
+  text-transform: none;
+  font-weight: 500;
+}
+
+li:nth-child(2n + 2) {
+  background-color: #f5f5f5;
+  border: none;
+}
+
+li:first-child {
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+
+li:last-child {
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+
+.book-emoji {
+  font-size: 30px;
+  margin-right: 16px;
+}
+
+.book-title {
+  font-family: ‘Fraunces’, serif;
+  font-size: 30px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+@media screen and (min-width: 768px) {
+  main {
+    padding: 50px 200px;
+  }
+
+  .book-div {
+    flex-wrap: wrap;
+  }
+}
