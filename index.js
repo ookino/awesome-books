@@ -40,22 +40,20 @@ class Book {
 
   addBook = (title, author, bookId, emoji) => {
     const newBook = new Book(title, author, bookId, emoji);
-    const ls =
-      localStorage.getItem('books') !== null
-        ? JSON.parse(localStorage.getItem('books'))
-        : [];
+    const ls = localStorage.getItem('books') !== null
+      ? JSON.parse(localStorage.getItem('books'))
+      : [];
     ls.unshift(newBook);
     localStorage.setItem('books', JSON.stringify(ls));
   };
 
   removeBook = (bookId) => {
-    console.log(bookId);
     const ls = JSON.parse(localStorage.getItem('books'));
-    console.log(ls);
+
     const removed = ls.filter((book) => book.bookId !== bookId);
-    console.log(removed);
+
     localStorage.setItem('books', JSON.stringify(removed));
-    console.log(localStorage);
+
     window.location.reload();
   };
 
@@ -75,9 +73,8 @@ class Book {
         pTitle.setAttribute('class', 'book-title');
         removeBook.setAttribute('onclick', `removeBook(${element.bookId})`);
         pEmoji.innerHTML = `${element.emoji}`;
-        pTitle.innerHTML =
-          `${element.title}` +
-          `<span class="book-author"> by ${element.author}</span>`;
+        pTitle.innerHTML = `${element.title}`
+          + `<span class="book-author"> by ${element.author}</span>`;
 
         removeBook.innerHTML = 'REMOVE';
         div.innerHTML += pEmoji.outerHTML + pTitle.outerHTML;
