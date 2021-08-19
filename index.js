@@ -5,14 +5,15 @@ let inputtedAuthor = '';
 let inputtedTitle = '';
 
 class Book {
-  constructor(title, author, bookId) {
+  constructor(title, author, bookId, emoji) {
     this.title = title;
     this.author = author;
     this.bookId = bookId;
+    this.emoji = emoji;
   }
 
-  addBook = (title, author, bookId) => {
-    const newBook = new Book(title, author, bookId);
+  addBook = (title, author, bookId, emoji) => {
+    const newBook = new Book(title, author, bookId, emoji);
     const ls = localStorage.getItem('books') !== null
       ? JSON.parse(localStorage.getItem('books'))
       : [];
@@ -32,23 +33,39 @@ class Book {
       const lsBooks = JSON.parse(localStorage.getItem('books'));
       lsBooks.forEach((element) => {
         const li = document.createElement('li');
+        const div = document.createElement('div');
+        const pEmoji = document.createElement('span');
         const pTitle = document.createElement('p');
-        const pAuthor = document.createElement('p');
         const removeBook = document.createElement('button');
         li.setAttribute('class', 'book-li');
+        div.setAttribute('class', 'book-div');
+        pEmoji.setAttribute('class', 'book-emoji');
         pTitle.setAttribute('class', 'book-title');
-        pAuthor.setAttribute('class', 'book-author');
-        removeBook.setAttribute('onclick', `removeBook(${element.bookId})`);
-        pTitle.innerHTML = `${element.title}`;
-        pAuthor.innerHTML = `${element.author}`;
-        removeBook.innerHTML = 'Remove';
-        li.innerHTML
-          += pTitle.outerHTML + pAuthor.outerHTML + removeBook.outerHTML;
+        removeBook.setAttribute('onclick', `removeBook('${element.bookId}')`);
+        pEmoji.innerHTML = `${element.emoji}`;
+        pTitle.innerHTML = `${element.title}`
+          + `<span class="book-author"> by ${element.author}</span>`;
+
+        removeBook.innerHTML = 'REMOVE';
+        div.innerHTML += pEmoji.outerHTML + pTitle.outerHTML;
+        li.innerHTML += div.outerHTML + removeBook.outerHTML;
         document.querySelector('.books-ul').appendChild(li);
       });
     }
   };
 }
+
+const changeEmoji = () => {
+  const emojiArray = [
+    '&#128212',
+    '&#128213',
+    '&#128215',
+    '&#128216',
+    '&#128217',
+  ];
+  const random = emojiArray[Math.floor(Math.random() * emojiArray.length)];
+  return random;
+};
 
 const booksData = new Book();
 
@@ -68,8 +85,9 @@ author.addEventListener('input', (e) => {
 });
 
 addBtn.addEventListener('click', () => {
+  const newEmoji = changeEmoji();
   const generatedId = Math.floor(Math.random() * 100);
-  booksData.addBook(inputtedTitle, inputtedAuthor, generatedId);
+  booksData.addBook(inputtedTitle, inputtedAuthor, generatedId, newEmoji);
 });
 
 /** display Book * */
