@@ -8,9 +8,19 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main>
-      <h1>Awesome Books</h1>
+    <header class="header">
+      <h2 id="logo" class="logo">Awesome Books</h2>
+      <ul class="nav">
+        <li class="nav-li"><a href="#" id="list">List</a></li>
+        <li class="nav-li"><a href="" id="add">Add</a></li>
+        <li class="nav-li"><a href="" id="contact">Contact</a></li>
+      </ul>
+    </header>
+    <section class="list-books">
+      <h1>All Books</h1>
       <ul class="books-ul"></ul>
+    </section>
+    <section class="add-book">
       <h1>Add Book</h1>
       <div>
         <form class="add-form">
@@ -35,7 +45,20 @@
           <button id="add-btn" type="submit">ADD BOOK</button>
         </form>
       </div>
-    </main>
+    </section>
+    <section class="contact">
+      <h1>Contact</h1>
+      <p>Do you have any question or you just want to say "Hello" ?</p>
+      <p>You can reach out to us</p>
+      <ul>
+        <li>Yaseer Okino & Mohamed Badr</li>
+        <li>+234 81879 09661</li>
+        <li>My address is online</li>
+      </ul>
+    </section>
+    <footer class="footer">
+      <p>COPYRIGHT</p>
+    </footer>
     <script src="index.js"></script>
   </body>
 </html>
